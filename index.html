@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Store</title>
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #FFA500; /* Orange text color */
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: #FFA500; /* Orange links */
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #FFF; /* White hover effect */
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #111; /* Dark background */
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    .logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #FFA500;
+      padding: 5px;
+      box-shadow: 0 0 10px #FFA500;
+    }
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+    nav a {
+      color: #FFA500;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: 0.3s;
+      position: relative;
+    }
+    nav a:hover {
+      color: #FFF;
+      text-shadow: 0px 0px 8px #FFA500;
+    }
+
+    /* Icon Styling */
+    .icons {
+      display: flex;
+      gap: 20px;
+    }
+    .icons img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #111; /* Icon background */
+      padding: 5px;
+      transition: 0.3s;
+      box-shadow: 0 0 8px rgba(255, 165, 0, 0.5);
+      filter: brightness(0.8);
+      object-fit: cover; /* Ensure image fills the circular container */
+    }
+    .icons img:hover {
+      filter: brightness(1.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+      color: #FFA500;
+      text-align: center;
+      padding-top: 100px;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+      animation: glow 1.5s infinite alternate;
+    }
+    .hero .btn {
+      padding: 15px 30px;
+      background-color: #FFA500;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.3s;
+      cursor: pointer;
+      font-size: 1.2em;
+      box-shadow: 0px 4px 8px rgba(255, 165, 0, 0.4);
+      animation: pulse 1.5s infinite alternate;
+    }
+    .hero .btn:hover {
+      background-color: #FFF;
+      color: #FFA500;
+      transform: scale(1.1);
+    }
+
+    /* Featured Games Section */
+    .featured-games {
+      padding: 80px 50px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      background-color: #111;
+    }
+    .game-card {
+      background-color: #222;
+      width: 320px;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      color: #FFA500;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid #333;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      position: relative;
+    }
+    .game-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      border-color: #FFA500;
+      box-shadow: 0px 8px 20px rgba(255, 165, 0, 0.4);
+    }
+    .game-card img {
+      width: 100%;
+      height: 220px;
+      border-radius: 10px;
+      transition: transform 0.3s, filter 0.3s;
+      box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.2);
+      filter: contrast(1.1) brightness(1.1);
+    }
+    .game-card:hover img {
+      transform: scale(1.1);
+      filter: contrast(1.3) brightness(1.1);
+    }
+    .game-card h3 {
+      margin: 20px 0;
+      font-size: 1.8em;
+    }
+    .game-card .btn {
+      padding: 12px 25px;
+      background-color: #FFA500;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1.1em;
+      box-shadow: 0px 4px 8px rgba(255, 165, 0, 0.3);
+    }
+    .game-card .btn:hover {
+      background-color: #FFF;
+      color: #FFA500;
+      transform: scale(1.1);
+    }
+
+    /* Footer Section */
+    footer {
+      padding: 20px;
+      text-align: center;
+      background-color: #111;
+      color: #888;
+      font-size: 0.9em;
+      border-top: 2px solid #333;
+    }
+    footer .social-icons {
+      margin: 10px 0;
+    }
+    footer .social-icons img {
+      width: 30px;
+      margin: 0 10px;
+      filter: brightness(0.8);
+      transition: filter 0.3s;
+    }
+    footer .social-icons img:hover {
+      filter: brightness(1.5);
+    }
+    footer a {
+      color: #FFA500;
+    }
+    footer a:hover {
+      color: #FFF;
+      text-shadow: 0px 0px 8px #FFA500;
+    }
+
+    /* Keyframes for animations */
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #FFA500, 0 0 20px #FFA500, 0 0 30px #FFA500; }
+      to { text-shadow: 0 0 20px #FF7F00, 0 0 30px #FF7F00, 0 0 40px #FF7F00; }
+    }
+    @keyframes pulse {
+      from { box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); }
+      to { box-shadow: 0 0 20px rgba(255, 165, 0, 0.7); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="company.jpg" alt="Logo">
+    </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="store.html">Store</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="icons">
+      <img src="ps5.png" alt="Cart Icon" title="Cart">
+      <img src="ps4.jpg" alt="Profile Icon" title="Profile">
+    </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div>
+      <h1>Discover Your Next Adventure!</h1>
+      <button class="btn">Shop Now</button>
+    </div>
+  </section>
+
+  <!-- Featured Games Section -->
+  <section class="featured-games">
+    <div class="game-card">
+      <img src="call of duty 3.jpg" alt="Game Image">
+      <h3>Game Title 1</h3>
+      <button class="btn">Buy Now</button>
+    </div>
+    <div class="game-card">
+      <img src="callofdutyblackops6.jpg" alt="Game Image">
+      <h3>Game Title 2</h3>
+      <button class="btn">Buy Now</button>
+    </div>
+    <div class="game-card">
+      <img src="https://via.placeholder.com/320x220" alt="Game Image">
+      <h3>Game Title 3</h3>
+      <button class="btn">Buy Now</button>
+    </div>
+    <div class="game-card">
+      <img src="https://via.placeholder.com/320x220" alt="Game Image">
+      <h3>Game Title 3</h3>
+      <button class="btn">Buy Now</button>
+    </div>
+    <div class="game-card">
+      <img src="https://via.placeholder.com/320x220" alt="Game Image">
+      <h3>Game Title 3</h3>
+      <button class="btn">Buy Now</button>
+    </div>
+    <div class="game-card">
+      <img src="https://via.placeholder.com/320x220" alt="Game Image">
+      <h3>Game Title 3</h3>
+      <button class="btn">Buy Now</button>
+    </div>
+   
+   
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2024 Game Store. All Rights Reserved. 
+    <a href="Cancellation & Refund Policy.html">Cancellation & Refund Policy</a> | 
+    <a href="term and condition.html">Terms and condition</a>  | 
+    <a href="contact.html">Contact Us</a>
+    <div class="social-icons">
+      <a href="https://www.instagram.com" target="_blank">
+        <img src="intagram.jpg" alt="Instagram" title="Instagram">
+      </a>
+      <a href="https://www.facebook.com" target="_blank">
+        <img src="facebook.jpg" alt="Facebook" title="Facebook">
+      </a>
+    </div>
+    <div>
+      <a href="#">About Us</a>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', () => alert('Button clicked!'));
+    });
+  </script>
+</body>
+</html>
